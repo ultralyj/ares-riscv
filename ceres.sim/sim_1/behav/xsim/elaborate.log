@@ -1,0 +1,35 @@
+Vivado Simulator 2019.2
+Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
+Running: C:/Users/ultralyj/AppData/Local/xilinx/Vivado/2019.2/bin/unwrapped/win64.o/xelab.exe -wto 17ce457bd4784e16a7a7b822779d48e2 --incr --debug typical --relax --mt 2 -L blk_mem_gen_v8_4_4 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot datapath_tb_behav xil_defaultlib.datapath_tb xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 32 for port 'pcadd4_i' [D:/code/verilog/FPGA_Project/ceres/ceres.srcs/rv_core.v:88]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module blk_mem_gen_v8_4_4.blk_mem_gen_v8_4_4_output_stage(...
+Compiling module blk_mem_gen_v8_4_4.blk_mem_gen_v8_4_4_softecc_outpu...
+Compiling module blk_mem_gen_v8_4_4.blk_mem_gen_v8_4_4_mem_module(C_...
+Compiling module blk_mem_gen_v8_4_4.blk_mem_gen_v8_4_4(C_FAMILY="zyn...
+Compiling module xil_defaultlib.dmem
+Compiling module blk_mem_gen_v8_4_4.blk_mem_gen_v8_4_4_output_stage(...
+Compiling module blk_mem_gen_v8_4_4.blk_mem_gen_v8_4_4_mem_module(C_...
+Compiling module blk_mem_gen_v8_4_4.blk_mem_gen_v8_4_4(C_FAMILY="zyn...
+Compiling module xil_defaultlib.imem
+Compiling module xil_defaultlib.pc
+Compiling module xil_defaultlib.regs
+Compiling module xil_defaultlib.ImmGen
+Compiling module xil_defaultlib.BranchComp
+Compiling module xil_defaultlib.ASel
+Compiling module xil_defaultlib.BSel
+Compiling module xil_defaultlib.alu
+Compiling module xil_defaultlib.ex
+Compiling module xil_defaultlib.writeback
+Compiling module xil_defaultlib.ctrl
+Compiling module xil_defaultlib.rv_core
+Compiling module xil_defaultlib.rvtop
+Compiling module xil_defaultlib.datapath_tb
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot datapath_tb_behav

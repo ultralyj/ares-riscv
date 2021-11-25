@@ -1,0 +1,23 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../ceres.srcs/ex_core" \
+"../../../../ceres.srcs/sources_1/ip/imem/sim/imem.v" \
+"../../../../ceres.srcs/sources_1/ip/dmem/sim/dmem.v" \
+"../../../../ceres.srcs/ex_core/ASel.v" \
+"../../../../ceres.srcs/ex_core/BSel.v" \
+"../../../../ceres.srcs/ex_core/BranchComp.v" \
+"../../../../ceres.srcs/ex_core/ImmGen.v" \
+"../../../../ceres.srcs/ex_core/alu.v" \
+"../../../../ceres.srcs/ctrl.v" \
+"../../../../ceres.srcs/ex.v" \
+"../../../../ceres.srcs/pc.v" \
+"../../../../ceres.srcs/ex_core/regs.v" \
+"../../../../ceres.srcs/rv_core.v" \
+"../../../../ceres.srcs/sources_1/new/rvtop.v" \
+"../../../../ceres.srcs/writeback.v" \
+"../../../../ceres.tb/datapath_tb.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
