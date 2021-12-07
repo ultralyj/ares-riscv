@@ -12,7 +12,6 @@
 `include "core_param.v"
 
 module writeback(
-    input wire clk_i,                   // 时钟输入
     input wire MemRW_i,                 // 存储读写配置输入
     input wire [`MEM_BUS]mem_i,       // 读取的数据
     input wire [`RegBus]alu_i,

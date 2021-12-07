@@ -32,7 +32,7 @@ begin
         end
         `IMMSEL_B_TYPE:
         begin
-            imm_o = {{(`RegWidth - `ImmWidth - 1){inst_i[`InstWidth-1]}},
+            imm_o = {{(`RegWidth - `ImmWidth){inst_i[`InstWidth-1]}},
                         inst_i[7],inst_i[30:25],inst_i[11:8],{1'b0}};
         end
         `IMMSEL_J_TYPE:

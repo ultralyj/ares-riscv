@@ -22,11 +22,9 @@ INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/verilog/FPGA_Project/ceres/
 INFO: [VRFC 10-311] analyzing module regs
 INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/verilog/FPGA_Project/ceres/ceres.srcs/rv_core.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module rv_core
-INFO: [VRFC 10-2458] undeclared symbol MemRW, assumed default net type wire [D:/code/verilog/FPGA_Project/ceres/ceres.srcs/rv_core.v:86]
-INFO: [VRFC 10-2458] undeclared symbol pc_reg, assumed default net type wire [D:/code/verilog/FPGA_Project/ceres/ceres.srcs/rv_core.v:88]
-INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/verilog/FPGA_Project/ceres/ceres.srcs/sources_1/new/rvtop.v" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/verilog/FPGA_Project/ceres/ceres.srcs/rvtop.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module rvtop
-INFO: [VRFC 10-2458] undeclared symbol clk, assumed default net type wire [D:/code/verilog/FPGA_Project/ceres/ceres.srcs/sources_1/new/rvtop.v:38]
+WARNING: [VRFC 10-159] /* in comment [D:/code/verilog/FPGA_Project/ceres/ceres.srcs/rvtop.v:54]
 INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/verilog/FPGA_Project/ceres/ceres.srcs/writeback.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module writeback
 INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/verilog/FPGA_Project/ceres/ceres.tb/datapath_tb.v" into library xil_defaultlib

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="datapath_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="datapath_tb" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="868200fs"></ZoomStartTime>
+      <ZoomEndTime time="914501fs"></ZoomEndTime>
+      <Cursor1Time time="919500fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="272"></NameColumnWidth>
+      <ValueColumnWidth column_width="116"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="15" />
+   <wvobject fp_name="/datapath_tb/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_tb/rst" type="logic">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_tb/rvtop_inst/rv_core_inst/pc_inst/pc_o" type="array">
+      <obj_property name="ElementShortName">pc_o[31:0]</obj_property>
+      <obj_property name="ObjectShortName">pc_o[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_tb/rvtop_inst/rv_core_inst/ex_inst/inst_i" type="array">
+      <obj_property name="ElementShortName">inst_i[31:0]</obj_property>
+      <obj_property name="ObjectShortName">inst_i[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_tb/rvtop_inst/rv_core_inst/ex_inst/ImmGen_inst/imm_o" type="array">
+      <obj_property name="ElementShortName">imm_o[31:0]</obj_property>
+      <obj_property name="ObjectShortName">imm_o[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_tb/rvtop_inst/rv_core_inst/ex_inst/regs_inst/AddrA_i" type="array">
+      <obj_property name="ElementShortName">AddrA_i[4:0]</obj_property>
+      <obj_property name="ObjectShortName">AddrA_i[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_tb/rvtop_inst/rv_core_inst/ex_inst/regs_inst/DataA_o" type="array">
+      <obj_property name="ElementShortName">DataA_o[31:0]</obj_property>
+      <obj_property name="ObjectShortName">DataA_o[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_tb/rvtop_inst/rv_core_inst/ex_inst/regs_inst/AddrB_i" type="array">
+      <obj_property name="ElementShortName">AddrB_i[4:0]</obj_property>
+      <obj_property name="ObjectShortName">AddrB_i[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_tb/rvtop_inst/rv_core_inst/ex_inst/regs_inst/DataB_o" type="array">
+      <obj_property name="ElementShortName">DataB_o[31:0]</obj_property>
+      <obj_property name="ObjectShortName">DataB_o[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_tb/rvtop_inst/rv_core_inst/ex_inst/regs_inst/AddrD_i" type="array">
+      <obj_property name="ElementShortName">AddrD_i[4:0]</obj_property>
+      <obj_property name="ObjectShortName">AddrD_i[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_tb/rvtop_inst/rv_core_inst/ex_inst/regs_inst/DataD_i" type="array">
+      <obj_property name="ElementShortName">DataD_i[31:0]</obj_property>
+      <obj_property name="ObjectShortName">DataD_i[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_tb/rvtop_inst/dmemAddr" type="array">
+      <obj_property name="ElementShortName">dmemAddr[15:0]</obj_property>
+      <obj_property name="ObjectShortName">dmemAddr[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_tb/rvtop_inst/MemRW" type="logic">
+      <obj_property name="ElementShortName">MemRW</obj_property>
+      <obj_property name="ObjectShortName">MemRW</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_tb/rvtop_inst/mem" type="array">
+      <obj_property name="ElementShortName">mem[31:0]</obj_property>
+      <obj_property name="ObjectShortName">mem[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_tb/rvtop_inst/DataW" type="array">
+      <obj_property name="ElementShortName">DataW[31:0]</obj_property>
+      <obj_property name="ObjectShortName">DataW[31:0]</obj_property>
+   </wvobject>
+</wave_config>

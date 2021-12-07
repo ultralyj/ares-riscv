@@ -14,6 +14,7 @@
 /* Program Counter */
 module pc(
     input wire clk_i,                       // 时钟信号
+    input wire rst_i,                       // 复位信号
     input wire[`InstAddrBus] jump_addr_i,   // 跳转地址
     input wire PCSel_i,                     
     output reg[`InstAddrBus] pc_o           // PC指针
@@ -21,20 +22,28 @@ module pc(
 
 initial 
     begin
-        pc_o = `ZeroWord;        
+        pc_o = `PC_START_ADDR;        
     end
 
-always @(posedge clk_i) 
+always @(posedge clk_i or negedge rst_i) 
 begin
-    if (PCSel_i == `PCSEL_ALU) 
+    if(rst_i == `RESET_ENABLE)
     begin
-        pc_o = jump_addr_i;
-    end 
-    else 
-    /* 指令递增 */
+        pc_o = `PC_START_ADDR;
+    end
+    else
     begin
-        pc_o = pc_o + 4'h4;
-    end        
+        if (PCSel_i == `PCSEL_ALU) 
+        begin
+            pc_o = jump_addr_i;
+        end 
+        else 
+        /* 指令递增 */
+        begin
+            pc_o = pc_o + 4'h4;
+        end  
+    end
+          
 end
 
 endmodule

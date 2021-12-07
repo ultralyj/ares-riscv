@@ -9,12 +9,17 @@
  * 
  */
 
+/* 重要配置参数，可修改 */
+`define PC_START_ADDR   32'h00010054         
+`define DMEM_SIZE       128
+
 /* BUS length */
 `define RegAddrBus      4:0
 `define RegBus          31:0
 `define MEM_BUS         31:0
 `define MEMAddrBus      31:0
 `define InstAddrBus     31:0
+`define IMEM_BUS        7:0 
 `define IMM_BUS         11:0
 `define INST_BUS        8:0
 `define IMMSEL_BUS      2:0
@@ -27,7 +32,7 @@
 `define HoldEnable      1'b1
 `define HoldDisable     1'b0
 `define ZeroReg         5'b00000
-`define ZeroWord        32'h0000
+`define ZeroWord        32'h00000000
 
 `define RegWidth        32          // 寄存器数据长度
 `define MemWidth        32          // 存储器数据长度
@@ -105,7 +110,6 @@
 /* others */
 `define FUNCT7_LOW      1'b0
 `define FUNCT7_HIGH     1'b1
-
-
+`define RESET_ENABLE    1'b0
 
 

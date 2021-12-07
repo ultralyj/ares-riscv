@@ -5,9 +5,11 @@
 module datapath_tb();
 
 reg clk;
+reg rst;
 
 initial 
 begin
+    rst = 1'b1;
     clk = 1'b0;
 end
 
@@ -17,6 +19,7 @@ begin
 end
 
 rvtop rvtop_inst(
-    .clk_i(clk)
+    .clk_i(clk),
+    .rst_i(rst)
 );
 endmodule

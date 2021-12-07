@@ -14,6 +14,7 @@
 
 module rv_core(
     input wire clk_i,
+    input wire rst_i,
     /* 取指，imem(rom)相关 */
     input wire [`InstAddrBus]inst_i,
     output wire [`InstAddrBus]pc_o,
@@ -56,6 +57,7 @@ module rv_core(
     /* 实例化pc模块 */
     pc pc_inst(
         .clk_i(clk_i),
+        .rst_i(rst_i),
         .PCSel_i(PCSel),
         .jump_addr_i(alu),
         .pc_o(pc)
@@ -64,7 +66,8 @@ module rv_core(
     /* 实例化ex模块，包括了br,immGen,regs,alu等重要模块 */
     ex ex_inst(
         .clk_i(clk_i),
-        
+        .rst_i(rst_i),
+
         .pc_i(pc),
         .inst_i(inst),   
         .DataD_i(DataD),
@@ -84,11 +87,10 @@ module rv_core(
 
     /* 实例化写回模块 */
     writeback writeback_inst(
-        .clk_i(clk_i),                      // 时钟输入
         .mem_i(mem_i),
-        .MemRW_i(MemRW),
+        .MemRW_i(MemRW_o),
         .alu_i(alu),
-        .pcadd4_i(pc_reg),
+        .pcadd4_i(pc),
         .WBSel_i(WBSel),
         .wb_o(DataD)
     );

@@ -13,11 +13,12 @@
 `include "risc_v_codetable.v"
 
 module ctrl(
+    /* 指令输入 */
     input wire[`INST_BUS] inst_i,              
-
+    /* 控制输入 */
     input wire BrEq_i,                      //branch equal(input)
     input wire BrLt_i,                      //branch less-than(input)
-
+    /* 控制输出 */
     output reg PCSel_o,                     //program counter register select(output)
     output reg [`IMMSEL_BUS]ImmSel_o,       //immidiate number select(output)
     output reg BrUn_o,                      //branch unisgned(output)
@@ -27,7 +28,6 @@ module ctrl(
     output reg MemRW_o,                     //memory read/write(output)
     output reg RegWEn_o,                    //register write enable(output)
     output reg [`WBSEL_BUS]WBSel_o          //write back select(output)
-
     );
     /* 分割指令的各部分 */
     /* 运算指令由下面三部分确定 */
@@ -335,7 +335,7 @@ module ctrl(
                 RegWEn_o = `REGWEN_ENABLE;
                 WBSel_o = `WBSEL_PCADD4;
             end
-
+            /* 以下为其他指令 */
             `INST_JALR:
             begin
                 BrUn_o = `BRUN_DEFAULT;
@@ -348,7 +348,6 @@ module ctrl(
                 RegWEn_o = `REGWEN_ENABLE;
                 WBSel_o = `WBSEL_PCADD4;
             end
-            /* 以下为其他指令 */
             `INST_LUI:
             begin
                 BrUn_o = `BRUN_DEFAULT;

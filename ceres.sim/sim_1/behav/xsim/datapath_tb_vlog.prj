@@ -12,7 +12,7 @@ verilog xil_defaultlib  --include "../../../../ceres.srcs/ex_core" \
 "../../../../ceres.srcs/pc.v" \
 "../../../../ceres.srcs/ex_core/regs.v" \
 "../../../../ceres.srcs/rv_core.v" \
-"../../../../ceres.srcs/sources_1/new/rvtop.v" \
+"../../../../ceres.srcs/rvtop.v" \
 "../../../../ceres.srcs/writeback.v" \
 "../../../../ceres.tb/datapath_tb.v" \
 

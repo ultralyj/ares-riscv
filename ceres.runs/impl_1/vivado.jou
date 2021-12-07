@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.2 (64-bit)
+# SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
+# IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+# Start of session at: Tue Dec  7 09:59:40 2021
+# Process ID: 24352
+# Current directory: D:/code/verilog/FPGA_Project/ceres/ceres.runs/impl_1
+# Command line: vivado.exe -log rvtop.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source rvtop.tcl -notrace
+# Log file: D:/code/verilog/FPGA_Project/ceres/ceres.runs/impl_1/rvtop.vdi
+# Journal file: D:/code/verilog/FPGA_Project/ceres/ceres.runs/impl_1\vivado.jou
+#-----------------------------------------------------------
+source rvtop.tcl -notrace

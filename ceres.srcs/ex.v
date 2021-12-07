@@ -14,7 +14,8 @@
 module ex(
     
     input wire clk_i,                       // 时钟输入 
-    
+    input wire rst_i,                       // 复位信号
+
     input wire [`RegBus]pc_i,               // pc指针输入
     input wire[`InstAddrBus]inst_i,         // 指令输入
     input wire [`RegBus]DataD_i,            // 写回数据输入
@@ -44,11 +45,12 @@ module ex(
     wire [`RegBus]imm;
 
     /* 配置输出连线 */
-    assign DataB_o = DataB;
+    assign DataB_o = RegDataB;
 
     /* 实例化regs模块 */
     regs regs_inst(
         .clk_i(clk_i),
+        .rst_i(rst_i),
         .RegWEn_i(RegWEn_i),
         .AddrD_i(inst_i[11:7]),
         .DataD_i(DataD_i),
