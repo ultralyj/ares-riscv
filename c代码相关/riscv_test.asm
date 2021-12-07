@@ -10,20 +10,20 @@ int main()
    10054:	ff410113          	addi	sp,sp,-12
    10058:	00812423          	sw	s0,8(sp)
    1005c:	00c10413          	addi	s0,sp,12
-    int i=0,ans=0;
+    int i = 0, ans = 0;
    10060:	fe042c23          	sw	zero,-8(s0)
    10064:	fe042a23          	sw	zero,-12(s0)
-    for(i=0;i<10;i++)
+    for (i = 0; i < 10; i++)
    10068:	fe042c23          	sw	zero,-8(s0)
    1006c:	0200006f          	j	1008c <main+0x38>
-        ans+=i;
+        ans += i;
    10070:	ff442703          	lw	a4,-12(s0)
    10074:	ff842783          	lw	a5,-8(s0)
    10078:	00f707b3          	add	a5,a4,a5
    1007c:	fef42a23          	sw	a5,-12(s0)
-    for(i=0;i<10;i++)
+    for (i = 0; i < 10; i++)
    10080:	ff842783          	lw	a5,-8(s0)
-   10084:	00178793          	r	a5,a5,1
+   10084:	00178793          	addi	a5,a5,1
    10088:	fef42c23          	sw	a5,-8(s0)
    1008c:	ff842703          	lw	a4,-8(s0)
    10090:	00900793          	li	a5,9

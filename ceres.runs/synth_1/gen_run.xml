@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="synth_1" LaunchPart="xc7z020clg400-2" LaunchTime="1638842166">
   <File Type="PA-TCL" Name="rvtop.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="rvtop_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="rvtop_reports.tcl"/>
   <File Type="RDS-RDS" Name="rvtop.vds"/>
   <File Type="RDS-UTIL" Name="rvtop_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="rvtop_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="rvtop.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="rvtop_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="rvtop_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/ip/imem/imem.xci">
