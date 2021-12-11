@@ -1,0 +1,41 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/verilog/FPGA_Project/Ares/Ares.srcs/sources_1/ip/imem/sim/imem.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module imem
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/verilog/FPGA_Project/Ares/Ares.srcs/sources_1/ip/dmem/sim/dmem.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module dmem
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/verilog/FPGA_Project/Ares/rtl/ASel.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ASel
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/verilog/FPGA_Project/Ares/rtl/BSel.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module BSel
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/verilog/FPGA_Project/Ares/rtl/BranchComp.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module BranchComp
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/verilog/FPGA_Project/Ares/rtl/ImmGen.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ImmGen
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/verilog/FPGA_Project/Ares/rtl/alu.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module alu
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/verilog/FPGA_Project/Ares/rtl/ctrl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ctrl
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/verilog/FPGA_Project/Ares/rtl/ctrlHazard.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ctrlHazard
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/verilog/FPGA_Project/Ares/rtl/forwarding.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module forwarding
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/verilog/FPGA_Project/Ares/rtl/pc.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module pc
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/verilog/FPGA_Project/Ares/rtl/regs.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module regs
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/verilog/FPGA_Project/Ares/rtl/rv_core.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module rv_core
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/verilog/FPGA_Project/Ares/rtl/rvtop.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module rvtop
+WARNING: [VRFC 10-159] /* in comment [D:/code/verilog/FPGA_Project/Ares/rtl/rvtop.v:56]
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/verilog/FPGA_Project/Ares/rtl/stage_DE.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module stage_DE
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/verilog/FPGA_Project/Ares/rtl/stage_EM.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module stage_EM
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/verilog/FPGA_Project/Ares/rtl/stage_FD.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module stage_FD
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/verilog/FPGA_Project/Ares/rtl/stage_MW.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module stage_MW
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/verilog/FPGA_Project/Ares/rtl/writeback.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module writeback
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/code/verilog/FPGA_Project/Ares/tb/ares_tb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ares_tb

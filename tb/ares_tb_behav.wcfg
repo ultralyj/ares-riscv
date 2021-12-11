@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="ares_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="ares_tb" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="602896fs"></ZoomStartTime>
+      <ZoomEndTime time="755397fs"></ZoomEndTime>
+      <Cursor1Time time="663496fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="297"></NameColumnWidth>
+      <ValueColumnWidth column_width="151"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="7" />
+   <wvobject fp_name="/ares_tb/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ares_tb/rst" type="logic">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ares_tb/rvtop_inst/rv_core_inst/pc_inst/pc_o" type="array">
+      <obj_property name="ElementShortName">pc_o[31:0]</obj_property>
+      <obj_property name="ObjectShortName">pc_o[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="group574" type="group">
+      <obj_property name="label">stage Decode</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/ares_tb/rvtop_inst/rv_core_inst/stage_FD_inst/pc_fo" type="array">
+         <obj_property name="ElementShortName">pc_fo[31:0]</obj_property>
+         <obj_property name="ObjectShortName">pc_fo[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ares_tb/rvtop_inst/rv_core_inst/regs_inst/AddrA_i" type="array">
+         <obj_property name="ElementShortName">AddrA_i[4:0]</obj_property>
+         <obj_property name="ObjectShortName">AddrA_i[4:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ares_tb/rvtop_inst/rv_core_inst/regs_inst/DataA_o" type="array">
+         <obj_property name="ElementShortName">DataA_o[31:0]</obj_property>
+         <obj_property name="ObjectShortName">DataA_o[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ares_tb/rvtop_inst/rv_core_inst/regs_inst/AddrB_i" type="array">
+         <obj_property name="ElementShortName">AddrB_i[4:0]</obj_property>
+         <obj_property name="ObjectShortName">AddrB_i[4:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ares_tb/rvtop_inst/rv_core_inst/regs_inst/DataB_o" type="array">
+         <obj_property name="ElementShortName">DataB_o[31:0]</obj_property>
+         <obj_property name="ObjectShortName">DataB_o[31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group575" type="group">
+      <obj_property name="label">stage Excute</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/ares_tb/rvtop_inst/rv_core_inst/stage_DE_inst/pc_do" type="array">
+         <obj_property name="ElementShortName">pc_do[31:0]</obj_property>
+         <obj_property name="ObjectShortName">pc_do[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ares_tb/rvtop_inst/rv_core_inst/ASel_inst/ASel_i" type="array">
+         <obj_property name="ElementShortName">ASel_i[1:0]</obj_property>
+         <obj_property name="ObjectShortName">ASel_i[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ares_tb/rvtop_inst/rv_core_inst/BSel_inst/BSel_i" type="array">
+         <obj_property name="ElementShortName">BSel_i[1:0]</obj_property>
+         <obj_property name="ObjectShortName">BSel_i[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ares_tb/rvtop_inst/rv_core_inst/BSel_inst/REGBSel_i" type="array">
+         <obj_property name="ElementShortName">REGBSel_i[1:0]</obj_property>
+         <obj_property name="ObjectShortName">REGBSel_i[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ares_tb/rvtop_inst/rv_core_inst/alu_inst/DataA_i" type="array">
+         <obj_property name="ElementShortName">DataA_i[31:0]</obj_property>
+         <obj_property name="ObjectShortName">DataA_i[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ares_tb/rvtop_inst/rv_core_inst/alu_inst/DataB_i" type="array">
+         <obj_property name="ElementShortName">DataB_i[31:0]</obj_property>
+         <obj_property name="ObjectShortName">DataB_i[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ares_tb/rvtop_inst/rv_core_inst/alu_inst/alu_o" type="array">
+         <obj_property name="ElementShortName">alu_o[31:0]</obj_property>
+         <obj_property name="ObjectShortName">alu_o[31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group576" type="group">
+      <obj_property name="label">stage Memory</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/ares_tb/rvtop_inst/MemRW" type="logic">
+         <obj_property name="ElementShortName">MemRW</obj_property>
+         <obj_property name="ObjectShortName">MemRW</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ares_tb/rvtop_inst/alu" type="array">
+         <obj_property name="ElementShortName">alu[31:0]</obj_property>
+         <obj_property name="ObjectShortName">alu[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ares_tb/rvtop_inst/dmemAddr" type="array">
+         <obj_property name="ElementShortName">dmemAddr[15:0]</obj_property>
+         <obj_property name="ObjectShortName">dmemAddr[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ares_tb/rvtop_inst/mem" type="array">
+         <obj_property name="ElementShortName">mem[31:0]</obj_property>
+         <obj_property name="ObjectShortName">mem[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ares_tb/rvtop_inst/DataW" type="array">
+         <obj_property name="ElementShortName">DataW[31:0]</obj_property>
+         <obj_property name="ObjectShortName">DataW[31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group577" type="group">
+      <obj_property name="label">stage Writeback</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/ares_tb/rvtop_inst/rv_core_inst/regs_inst/RegWEn_i" type="logic">
+         <obj_property name="ElementShortName">RegWEn_i</obj_property>
+         <obj_property name="ObjectShortName">RegWEn_i</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ares_tb/rvtop_inst/rv_core_inst/regs_inst/AddrD_i" type="array">
+         <obj_property name="ElementShortName">AddrD_i[4:0]</obj_property>
+         <obj_property name="ObjectShortName">AddrD_i[4:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ares_tb/rvtop_inst/rv_core_inst/regs_inst/DataD_i" type="array">
+         <obj_property name="ElementShortName">DataD_i[31:0]</obj_property>
+         <obj_property name="ObjectShortName">DataD_i[31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+</wave_config>
