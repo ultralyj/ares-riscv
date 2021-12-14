@@ -12,59 +12,15 @@
 `include "core_param.v"
 
 module BSel(
-    input wire [`BSEL_BUS]BSel_i,              // 配置通路选择的输入
-    input wire [`BSEL_BUS]REGBSel_i,
+    input wire BSel_i,              // 配置通路选择的输入
 
-    input wire [`RegBus]DataD_i,
-    input wire [`RegBus]alu_i,
     input wire [`RegBus]DataB_i,    // 数据B输入
     input wire [`RegBus]Imm_i,      // 立即数输入
     
-    output reg [`RegBus]RegDataB_o,
-    output reg [`RegBus]DataB_o     // 选择输出
+    output wire [`RegBus]DataB_o     // 选择输出
     );
 
-always @(*) 
-begin
-    case (BSel_i)
-        `BSEL_REG:
-        begin
-            DataB_o = DataB_i;
-        end
-        `BSEL_IMM:  
-        begin
-            DataB_o = Imm_i;
-        end 
-        `BSEL_ALU:
-        begin
-            DataB_o = alu_i;
-        end  
-        `BSEL_DATAD: 
-        begin
-            DataB_o = DataD_i;
-        end
-        default: 
-        begin
-            DataB_o = DataB_i;
-        end
-    endcase
-end
+    assign DataB_o = (BSel_i == `BSEL_IMM)?Imm_i:DataB_i;
 
-always @(*) 
-begin
-    case (REGBSel_i)
-        `BSEL_ALU:
-        begin
-            RegDataB_o = alu_i;
-        end  
-        `BSEL_DATAD: 
-        begin
-            RegDataB_o = DataD_i;
-        end
-        default: 
-        begin
-            RegDataB_o = DataB_i;
-        end
-    endcase
-end
+
 endmodule

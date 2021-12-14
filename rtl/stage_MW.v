@@ -13,6 +13,7 @@
 
 module stage_MW(
     input wire clk_i,
+    input wire rst_i,
     /*______输入部分________*/
     input wire RegWEn_mi,
     input wire [`RegAddrBus]AddrD_mi,
@@ -23,10 +24,19 @@ module stage_MW(
     output reg [`RegBus]DataD_mo
     );
 
-    always @(posedge clk_i) 
+    always @(posedge clk_i or negedge rst_i) 
     begin
-        RegWEn_mo = RegWEn_mi;
-        AddrD_mo = AddrD_mi;
-        DataD_mo = DataD_mi;
+        if (rst_i == `RESET_ENABLE) 
+        begin
+            RegWEn_mo <= `REGWEN_DEFAULT;
+            AddrD_mo <= `ZeroReg;
+            DataD_mo <= `ZeroWord;
+        end
+        else
+        begin
+            RegWEn_mo <= RegWEn_mi;
+            AddrD_mo <= AddrD_mi;
+            DataD_mo <= DataD_mi;
+        end
     end
 endmodule

@@ -1,7 +1,7 @@
 /**
  * @file ctrl.v
  * @author ultralyj (1951578@tongji.edu.cn)
- * @brief risc-vÊ†πÊçÆÂëΩ‰ª§ÔºåÈÖçÁΩÆÂêÑ‰∏™Ê®°ÂùóÁöÑÊéßÂà∂ÈÄöË∑Ø
+ * @brief risc-v∏˘æ›√¸¡Ó£¨≈‰÷√∏˜∏ˆƒ£øÈµƒøÿ÷∆Õ®¬∑
  * @version 0.1
  * @date 2021-11-22
  * 
@@ -10,428 +10,53 @@
  */
 
 `include "core_param.v"
-`include "risc_v_codetable.v"
+`include "riscv_codetable.v"
 
 module ctrl(
-    /* Êåá‰ª§ËæìÂÖ• */
-    input wire[`INST_BUS] inst_i,              
-    /* ÊéßÂà∂ËæìÂÖ• */
-    input wire BrEq_i,                      //branch equal(input)
-    input wire BrLt_i,                      //branch less-than(input)
-    /* ÊéßÂà∂ËæìÂá∫ */
-    output reg PCSel_o,                     //program counter register select(output)
-    output reg [`IMMSEL_BUS]ImmSel_o,       //immidiate number select(output)
-    output reg BrUn_o,                      //branch unisgned(output)
-    output reg [`ASEL_BUS]ASel_o,                      //register1 select(output)
-    output reg [`BSEL_BUS]BSel_o,                      //register2 select(output)
-    output reg [`ALUSEL_BUS]ALUSel_o,       //ALU function select(output)
-    output reg MemRW_o,                     //memory read/write(output)
-    output reg RegWEn_o,                    //register write enable(output)
-    output reg [`WBSEL_BUS]WBSel_o          //write back select(output)
+    /* ÷∏¡Ó ‰»Î */
+    input wire[`INST_CTRL_BUS] inst_i,              
+    /* øÿ÷∆ ‰≥ˆ */
+    output wire PCSel_o,                     //program counter register select(output)
+    output wire [`IMMSEL_BUS]ImmSel_o,       //immidiate number select(output)
+    output wire BrUn_o,                      //branch unisgned(output)
+    output wire ASel_o,                      //register1 select(output)
+    output wire BSel_o,                      //register2 select(output)
+    output wire [`ALUSEL_BUS]ALUSel_o,       //ALU function select(output)
+    output wire MemRW_o,                     //memory read/write(output)
+    output wire RegWEn_o,                    //register write enable(output)
+    output wire [`WBSEL_BUS]WBSel_o          //write back select(output)
     );
-    /* ÂàÜÂâ≤Êåá‰ª§ÁöÑÂêÑÈÉ®ÂàÜ */
-    /* ËøêÁÆóÊåá‰ª§Áî±‰∏ãÈù¢‰∏âÈÉ®ÂàÜÁ°ÆÂÆö */
+    /* ∑÷∏Ó÷∏¡Óµƒ∏˜≤ø∑÷ */
+    /* ‘ÀÀ„÷∏¡Ó”…œ¬√Ê»˝≤ø∑÷»∑∂® */
     wire[4:0]   opcode = inst_i[4:0];
     wire[2:0]   funct3 = inst_i[7:5];
     wire        funct7 = inst_i[8];
     
-    always @(*) 
-    begin
-        case (opcode)
-            `INST_TYPE_R_M:
-            begin
-                BrUn_o = `BRUN_DEFAULT;
-                PCSel_o = `PCSEL_ADD4;
-                ImmSel_o = `IMMSEL_DEFAULT;
-                ASel_o = `ASEL_REG;
-                BSel_o = `BSEL_REG;
-                MemRW_o = `MEMRW_LOAD;
-                RegWEn_o = `REGWEN_ENABLE;
-                WBSel_o = `WBSEL_ALU;
-                case (funct3)
-                    `INST_ADD_SUB:
-                    begin
-                        case (funct7)
-                            `FUNCT7_LOW: 
-                                ALUSel_o = `ALUSEL_ADD;
-                            `FUNCT7_HIGH:
-                                ALUSel_o = `ALUSEL_SUB;
-                            default: 
-                            begin
-                                ALUSel_o = `ALUSEL_DEFAULT;
-                            end
-                        endcase
-                    end 
-                    `INST_SLL:
-                    begin
-                        ALUSel_o = `ALUSEL_SLL;
-                    end
-                    `INST_SLT:
-                    begin
-                        ALUSel_o = `ALUSEL_SLT;
-                    end
-                    `INST_SLTU:
-                    begin
-                        ALUSel_o = `ALUSEL_SLTU;
-                    end     
-                    `INST_XOR:
-                    begin
-                        ALUSel_o = `ALUSEL_XOR;
-                    end 
-                    `INST_SR:
-                    begin
-                        case (funct7)
-                            `FUNCT7_LOW: 
-                                ALUSel_o = `ALUSEL_SRL;
-                            `FUNCT7_HIGH:
-                                ALUSel_o = `ALUSEL_SRA;
-                            default: 
-                            begin
-                                ALUSel_o = `ALUSEL_DEFAULT;
-                            end
-                        endcase
-                    end 
-                    `INST_OR:
-                    begin
-                        ALUSel_o = `ALUSEL_OR;
-                    end
-
-                    `INST_AND:
-                    begin
-                        ALUSel_o = `ALUSEL_AND;
-                    end 
-                    default: 
-                    begin
-                        ALUSel_o = `ALUSEL_DEFAULT;
-                    end
-                endcase
-            end
-            `INST_TYPE_I:
-            begin
-                BrUn_o = `BRUN_DEFAULT;
-                PCSel_o = `PCSEL_ADD4;
-                ImmSel_o = `IMMSEL_I_TYPE;
-                ASel_o = `ASEL_REG;
-                BSel_o = `BSEL_IMM;
-                ALUSel_o = `ALUSEL_ADD;
-                MemRW_o = `MEMRW_LOAD;
-                RegWEn_o = `REGWEN_ENABLE;
-                WBSel_o = `WBSEL_ALU;
-                case (funct3)
-                    `INST_ADDI:
-                    begin
-                        ALUSel_o = `ALUSEL_ADD;
-                    end
-                        
-                    `INST_SLTI:
-                    begin
-                        ALUSel_o = `ALUSEL_SLT;
-                    end 
-                    `INST_SLTIU:
-                    begin
-                        ALUSel_o = `ALUSEL_SLTU;
-                    end 
-                    `INST_XORI:
-                    begin
-                        ALUSel_o = `ALUSEL_XOR;
-                    end
-                    `INST_ORI:
-                    begin
-                        ALUSel_o = `ALUSEL_OR;
-                    end
-                    `INST_ANDI:
-                    begin
-                        ALUSel_o = `ALUSEL_AND;
-                    end 
-                    `INST_SLLI:
-                    begin
-                        ALUSel_o = `ALUSEL_SLL;
-                    end
-                    `INST_SRI: 
-                    begin
-                        case (funct7)
-                            `FUNCT7_LOW: 
-                                ALUSel_o = `ALUSEL_SRL;
-                            `FUNCT7_HIGH:
-                                ALUSel_o = `ALUSEL_SRA;
-                            default: 
-                            begin
-                                ALUSel_o = `ALUSEL_DEFAULT;
-                            end
-                        endcase
-                    end
-                    default: 
-                    begin
-                        ALUSel_o = `ALUSEL_DEFAULT;
-                    end
-                endcase
-            end
-            `INST_TYPE_L:
-            begin
-                case (funct3)
-                    `INST_LB, `INST_LH, `INST_LW, `INST_LBU, `INST_LHU: 
-                    begin
-                        BrUn_o = `BRUN_DEFAULT;
-                        PCSel_o = `PCSEL_ADD4;
-                        ImmSel_o = `IMMSEL_I_TYPE;
-                        ASel_o = `ASEL_REG;
-                        BSel_o = `BSEL_IMM;
-                        ALUSel_o = `ALUSEL_ADD;
-                        MemRW_o = `MEMRW_LOAD;
-                        RegWEn_o = `REGWEN_ENABLE;
-                        WBSel_o = `WBSEL_MEM;
-                    end
-                    default: 
-                    begin
-                        BrUn_o = `BRUN_DEFAULT;
-                        PCSel_o = `PCSEL_DEFAULT;
-                        ImmSel_o = `IMMSEL_DEFAULT;
-                        ASel_o = `ASEL_DEFAULT;
-                        BSel_o = `BSEL_DEFAULT;
-                        ALUSel_o = `ALUSEL_DEFAULT;
-                        MemRW_o = `MEMRW_DEFAULT;
-                        RegWEn_o = `REGWEN_DEFAULT;
-                        WBSel_o = `WBSEL_DEFAULT;
-                    end
-                endcase
-            end
-            `INST_TYPE_S:
-            begin
-                BrUn_o = `BRUN_DEFAULT;
-                PCSel_o = `PCSEL_ADD4;
-                ImmSel_o = `IMMSEL_S_TYPE;
-                ASel_o = `ASEL_REG;
-                BSel_o = `BSEL_IMM;
-                ALUSel_o = `ALUSEL_ADD;
-                MemRW_o = `MEMRW_STORE;
-                RegWEn_o = `REGWEN_DISABLE;
-                WBSel_o = `WBSEL_DEFAULT;
-                case (funct3)
-                    `INST_SB, `INST_SW, `INST_SH: 
-                    begin
-                        MemRW_o = `MEMRW_STORE;
-                    end
-                    default: 
-                    begin
-                        MemRW_o = `MEMRW_STORE;
-                    end
-                endcase
-            end
-            `INST_TYPE_B:
-            begin
-                //PCSel_o = `PCSEL_ADD4;
-                ImmSel_o = `IMMSEL_B_TYPE;
-                ASel_o = `ASEL_PC;
-                BSel_o = `BSEL_IMM;
-                ALUSel_o = `ALUSEL_ADD;
-                MemRW_o = `MEMRW_LOAD;
-                RegWEn_o = `REGWEN_DISABLE;
-                WBSel_o = `WBSEL_DEFAULT;
-                case (funct3)
-                    `INST_BEQ:
-                    begin
-                        BrUn_o = `BRUN_DEFAULT;
-                        case (BrEq_i)
-                            `BREQ_BNE: 
-                            begin
-                                PCSel_o = `PCSEL_ADD4;
-                            end
-                            `BREQ_BEQ:
-                            begin
-                                PCSel_o = `PCSEL_ALU;
-                            end
-                            default: 
-                            begin
-                                PCSel_o = `PCSEL_DEFAULT;
-                            end
-                        endcase
-                    end
-                    `INST_BNE:
-                    begin
-                        BrUn_o = `BRUN_DEFAULT;
-                        case (BrEq_i)
-                            `BREQ_BNE: 
-                            begin
-                                PCSel_o = `PCSEL_ALU;
-                            end
-                            `BREQ_BEQ:
-                            begin
-                                PCSel_o = `PCSEL_ADD4;
-                            end
-                            default: 
-                            begin
-                                PCSel_o = `PCSEL_DEFAULT;
-                            end
-                        endcase
-                    end
-                    `INST_BLT:
-                    begin
-                        BrUn_o = `BRUN_SIGNED;
-                        case (BrLt_i)
-                            `BRLT_BGE_BGEU: 
-                                PCSel_o = `PCSEL_ADD4;
-                            `BRLT_BLT_BLTU:
-                                PCSel_o = `PCSEL_ALU;
-                            default: 
-                            begin
-                                PCSel_o = `PCSEL_DEFAULT;
-                            end
-                        endcase
-                    end 
-
-                    `INST_BLTU:
-                    begin
-                        BrUn_o = `BRUN_UNSIGNED;
-                        case (BrLt_i)
-                            `BRLT_BGE_BGEU: 
-                                PCSel_o = `PCSEL_ADD4;
-                            `BRLT_BLT_BLTU:
-                                PCSel_o = `PCSEL_ALU;
-                            default: 
-                            begin
-                                PCSel_o = `PCSEL_DEFAULT;
-                            end
-                        endcase
-                    end 
-
-                    `INST_BGE:
-                    begin
-                        BrUn_o = `BRUN_SIGNED;
-                        case (BrLt_i)
-                            `BRLT_BGE_BGEU: 
-                                PCSel_o = `PCSEL_ALU;
-                            `BRLT_BLT_BLTU:
-                                PCSel_o = `PCSEL_ADD4;
-                            default: 
-                            begin
-                                PCSel_o = `PCSEL_DEFAULT;
-                            end
-                        endcase
-                    end
-                    `INST_BGEU: 
-                    begin
-                        BrUn_o = `BRUN_UNSIGNED;
-                        case (BrLt_i)
-                            `BRLT_BGE_BGEU: 
-                                PCSel_o = `PCSEL_ALU;
-                            `BRLT_BLT_BLTU:
-                                PCSel_o = `PCSEL_ADD4;
-                            default: 
-                            begin
-                            PCSel_o = `PCSEL_DEFAULT; 
-                            end
-                        endcase
-                    end
-                    default: 
-                    begin
-                        BrUn_o = `BRUN_DEFAULT;
-                        PCSel_o = `PCSEL_DEFAULT;
-                    end
-                endcase
-            end
-            /* J-type(Áî®‰∫éÊó†Êù°‰ª∂Êìç‰Ωú) */
-            `INST_JAL:
-            begin
-                BrUn_o = `BRUN_DEFAULT;
-                PCSel_o = `PCSEL_ALU;
-                ImmSel_o = `IMMSEL_J_TYPE;
-                ASel_o = `ASEL_PC;
-                BSel_o = `BSEL_IMM;
-                ALUSel_o = `ALUSEL_ADD;
-                MemRW_o = `MEMRW_LOAD;
-                RegWEn_o = `REGWEN_ENABLE;
-                WBSel_o = `WBSEL_PCADD4;
-            end
-            /* ‰ª•‰∏ã‰∏∫ÂÖ∂‰ªñÊåá‰ª§ */
-            `INST_JALR:
-            begin
-                BrUn_o = `BRUN_DEFAULT;
-                PCSel_o = `PCSEL_ALU;
-                ImmSel_o = `IMMSEL_I_TYPE;
-                ASel_o = `ASEL_REG;
-                BSel_o = `BSEL_IMM;
-                ALUSel_o = `ALUSEL_ADD;
-                MemRW_o = `MEMRW_LOAD;
-                RegWEn_o = `REGWEN_ENABLE;
-                WBSel_o = `WBSEL_PCADD4;
-            end
-            `INST_LUI:
-            begin
-                BrUn_o = `BRUN_DEFAULT;
-                PCSel_o = `PCSEL_ADD4;
-                ImmSel_o = `IMMSEL_U_TYPE;
-                ASel_o = `ASEL_PC;
-                BSel_o = `BSEL_IMM;
-                ALUSel_o = `ALUSEL_ADD;
-                MemRW_o = `MEMRW_LOAD;
-                RegWEn_o = `REGWEN_ENABLE;
-                WBSel_o = `WBSEL_ALU;
-            end
-            `INST_AUIPC:
-            begin
-                BrUn_o = `BRUN_DEFAULT;
-                PCSel_o = `PCSEL_ADD4;
-                ImmSel_o = `IMMSEL_U_TYPE;
-                ASel_o = `ASEL_PC;
-                BSel_o = `BSEL_IMM;
-                ALUSel_o = `ALUSEL_ADD;
-                MemRW_o = `MEMRW_LOAD;
-                RegWEn_o = `REGWEN_ENABLE;
-                WBSel_o = `WBSEL_ALU;
-            end
-            `INST_FENCE:
-            begin
-                BrUn_o = `BRUN_DEFAULT;
-                PCSel_o = `PCSEL_ADD4;
-                ImmSel_o = `IMMSEL_I_TYPE;
-                ASel_o = `ASEL_REG;
-                BSel_o = `BSEL_IMM;
-                ALUSel_o = `ALUSEL_ADD;
-                MemRW_o = `MEMRW_LOAD;
-                RegWEn_o = `REGWEN_ENABLE;
-                WBSel_o = `WBSEL_ALU;
-            end
-            `INST_CSR:
-            begin
-                BrUn_o = `BRUN_DEFAULT;
-                PCSel_o = `PCSEL_ADD4;
-                ImmSel_o = `IMMSEL_I_TYPE;
-                ASel_o = `ASEL_REG;
-                BSel_o = `BSEL_IMM;
-                ALUSel_o = `ALUSEL_ADD;
-                MemRW_o = `MEMRW_LOAD;
-                RegWEn_o = `REGWEN_ENABLE;
-                WBSel_o = `WBSEL_ALU;
-                case (funct3)
-                    `INST_CSRRW, `INST_CSRRS, `INST_CSRRC: 
-                    begin
-                        
-                    end
-                    `INST_CSRRWI, `INST_CSRRSI, `INST_CSRRCI: 
-                    begin
-                        
-                    end
-                    default: 
-                    begin
-                        
-                    end
-                endcase
-            end
-            
-            default: 
-                begin
-                    /* ÂÖ®ÈÉ®ËÆæ‰∏∫‰∏çÂÆöÊÄÅ */
-                    BrUn_o = `BRUN_DEFAULT;
-                    PCSel_o = `PCSEL_DEFAULT;
-                    ImmSel_o = `IMMSEL_DEFAULT;
-                    ASel_o = `ASEL_DEFAULT;
-                    BSel_o = `BSEL_DEFAULT;
-                    ALUSel_o = `ALUSEL_DEFAULT;
-                    MemRW_o = `MEMRW_DEFAULT;
-                    RegWEn_o = `REGWEN_DEFAULT;
-                    WBSel_o = `WBSEL_DEFAULT;
-                end
-        endcase
-    end
-    
+    assign PCSel_o =    (opcode == `INST_JAL||opcode == `INST_JALR)?`PCSEL_ALU:`PCSEL_ADD4;
+    assign ImmSel_o =   (opcode == `INST_TYPE_I || opcode == `INST_TYPE_L || opcode == `INST_JALR)?`IMMSEL_I_TYPE:
+                        (opcode == `INST_LUI || opcode == `INST_AUIPC)?`IMMSEL_U_TYPE:
+                        (opcode == `INST_TYPE_S)?`IMMSEL_S_TYPE:
+                        (opcode == `INST_TYPE_B)?`IMMSEL_B_TYPE:
+                        (opcode == `INST_JAL)?`IMMSEL_J_TYPE:`IMMSEL_DEFAULT;
+    assign BrUn_o =     (opcode != `INST_TYPE_B)?`BRUN_DEFAULT:
+                        (funct3 == `INST_BLTU || funct3 == `INST_BGEU)?`BRUN_UNSIGNED:`BRUN_SIGNED;
+    assign ASel_o =     (opcode == `INST_TYPE_B||opcode == `INST_JAL||
+                         opcode == `INST_LUI||opcode == `INST_AUIPC)?`ASEL_PC:`ASEL_REG;
+    assign BSel_o =     (opcode == `INST_TYPE_R_M)?`BSEL_REG:`BSEL_IMM;
+    assign MemRW_o =    (opcode == `INST_TYPE_S)?`MEMRW_STORE:`MEMRW_LOAD;
+    assign RegWEn_o =   (opcode == `INST_TYPE_S||opcode == `INST_TYPE_B)?`REGWEN_DISABLE:`REGWEN_ENABLE;
+    assign WBSel_o =    (opcode == `INST_TYPE_L)?`WBSEL_MEM:
+                        (opcode == `INST_JAL||opcode == `INST_JALR)?`WBSEL_PCADD4:`WBSEL_ALU;
+    assign ALUSel_o =   (opcode == `INST_TYPE_R_M || opcode == `INST_TYPE_I)?(
+                        (opcode == `INST_TYPE_R_M && funct3 == `INST_ADD_SUB && funct7 == `FUNCT7_LOW ||
+                            opcode == `INST_TYPE_I && funct3 == `INST_ADD_SUB)?`ALUSEL_ADD:
+                        (opcode == `INST_TYPE_R_M && funct3 == `INST_ADD_SUB && funct7 == `FUNCT7_HIGH)?`ALUSEL_SUB:
+                        (funct3 == `INST_SLL)?`ALUSEL_SLL:
+                        (funct3 == `INST_SLT)?`ALUSEL_SLT:
+                        (funct3 == `INST_SLTU)?`ALUSEL_SLTU:
+                        (funct3 == `INST_XOR)?`ALUSEL_XOR:
+                        (funct3 == `INST_SR && funct7 == `FUNCT7_LOW)?`ALUSEL_SRL:
+                        (funct3 == `INST_SR && funct7 == `FUNCT7_HIGH)?`ALUSEL_SRA:
+                        (funct3 == `INST_OR)?`ALUSEL_OR:
+                        (funct3 == `INST_AND)?`ALUSEL_AND:`ALUSEL_DEFAULT):`ALUSEL_ADD;
 endmodule

@@ -3,7 +3,7 @@
  * @author ultralyj (1951578@tongji.edu.cn)
  * @brief risc-v内核参数的宏定义包含文件
  * @version 0.3
- * @date 2021-11-22
+ * @date 2021-12-11
  * 
  * @copyright Copyright (c) 2021
  * 
@@ -23,7 +23,7 @@
 `define IMM_BUS         11:0
 `define ASEL_BUS        1:0
 `define BSEL_BUS        1:0
-`define INST_BUS        8:0
+`define INST_CTRL_BUS        8:0
 `define IMMSEL_BUS      2:0
 `define ALUSEL_BUS      3:0
 `define WBSEL_BUS       1:0
@@ -71,18 +71,14 @@
 `define BRUN_DEFAULT    1'b0
 
 /* 6. register1 select(output) options */
-`define ASEL_REG        2'b00
-`define ASEL_PC         2'b01
-`define ASEL_ALU        2'b10
-`define ASEL_DATAD      2'b11
-`define ASEL_DEFAULT    2'b00
+`define ASEL_REG        1'b0
+`define ASEL_PC         1'b1
+`define ASEL_DEFAULT    1'b0
 
 /* 7. register2 select(output) options */
-`define BSEL_REG        2'b00
-`define BSEL_IMM        2'b01
-`define BSEL_ALU        2'b10
-`define BSEL_DATAD      2'b11
-`define BSEL_DEFAULT    2'b00
+`define BSEL_REG        1'b0
+`define BSEL_IMM        1'b1
+`define BSEL_DEFAULT    1'b0
 
 /* 8. ALU function select(output) options */
 `define ALUSEL_ADD      4'b0000

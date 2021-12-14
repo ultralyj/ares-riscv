@@ -1,10 +1,10 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.2 (win64) Build 2708876 Wed Nov  6 21:40:23 MST 2019
--- Date        : Fri Dec 10 23:36:09 2021
+-- Date        : Mon Dec 13 10:19:13 2021
 -- Host        : DESKTOP-DAO2O90 running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim
---               d:/code/verilog/FPGA_Project/Ares/Ares.srcs/sources_1/ip/imem/imem_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top imem -prefix
+--               imem_ imem_sim_netlist.vhdl
 -- Design      : imem
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -19,8 +19,6 @@ entity imem_rom is
     spo : out STD_LOGIC_VECTOR ( 23 downto 0 );
     a : in STD_LOGIC_VECTOR ( 7 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of imem_rom : entity is "rom";
 end imem_rom;
 
 architecture STRUCTURE of imem_rom is
@@ -381,8 +379,6 @@ entity imem_dist_mem_gen_v8_0_13_synth is
     spo : out STD_LOGIC_VECTOR ( 23 downto 0 );
     a : in STD_LOGIC_VECTOR ( 7 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of imem_dist_mem_gen_v8_0_13_synth : entity is "dist_mem_gen_v8_0_13_synth";
 end imem_dist_mem_gen_v8_0_13_synth;
 
 architecture STRUCTURE of imem_dist_mem_gen_v8_0_13_synth is
@@ -481,8 +477,6 @@ entity imem_dist_mem_gen_v8_0_13 is
   attribute C_SYNC_ENABLE of imem_dist_mem_gen_v8_0_13 : entity is 1;
   attribute C_WIDTH : integer;
   attribute C_WIDTH of imem_dist_mem_gen_v8_0_13 : entity is 32;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of imem_dist_mem_gen_v8_0_13 : entity is "dist_mem_gen_v8_0_13";
 end imem_dist_mem_gen_v8_0_13;
 
 architecture STRUCTURE of imem_dist_mem_gen_v8_0_13 is

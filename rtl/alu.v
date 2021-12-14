@@ -39,47 +39,47 @@ module alu(
         case (ALUSel_i)
             `ALUSEL_ADD:    // 加法
             begin
-                alu_o = DataA_i + DataB_i;
+                alu_o <= DataA_i + DataB_i;
             end   
             `ALUSEL_SUB:   // 减法
             begin
-                alu_o = DataA_i - DataB_i;
+                alu_o <= DataA_i - DataB_i;
             end  
             `ALUSEL_AND:   // 逻辑与（位运算）
             begin
-                alu_o = DataA_i & DataB_i;
+                alu_o <= DataA_i & DataB_i;
             end  
             `ALUSEL_OR:   // 逻辑或（位运算）
             begin
-                alu_o = DataA_i | DataB_i;
+                alu_o <= DataA_i | DataB_i;
             end  
             `ALUSEL_XOR:  // 逻辑异或（位运算）
             begin
-                alu_o = DataA_i ^ DataB_i;
+                alu_o <= DataA_i ^ DataB_i;
             end   
             `ALUSEL_SLL:    // 逻辑左移（低位补零）
             begin
-                alu_o = DataA_i << DataB_i[4:0];
+                alu_o <= DataA_i << DataB_i[4:0];
             end  
             `ALUSEL_SRL:    // 逻辑右移（高位补零）
             begin
-                alu_o = DataA_i >> DataB_i[4:0];
+                alu_o <= DataA_i >> DataB_i[4:0];
             end   
             `ALUSEL_SRA:    // 算数右移（高位用第一位填充）   
             begin
-                alu_o = (SR_Shift & SR_DataB_Mask) | ({32{DataA_i[31]}} & (~SR_DataB_Mask));
+                alu_o <= (SR_Shift & SR_DataB_Mask) | ({32{DataA_i[31]}} & (~SR_DataB_Mask));
             end  
             `ALUSEL_SLT:    // 符号数比较(A小于B返回1)
             begin
-                alu_o = {32{(~Compare_Signed)}} & 32'h1;
+                alu_o <= {32{(~Compare_Signed)}} & 32'h1;
             end    
             `ALUSEL_SLTU:   // 无符号数比较(A小于B返回1)
             begin
-                alu_o = {32{(~Compare_Unsigned)}} & 32'h1;
+                alu_o <= {32{(~Compare_Unsigned)}} & 32'h1;
             end  
             default: 
             begin
-                alu_o = `ZeroWord;
+                alu_o <= `ZeroWord;
             end  
         endcase    
     end

@@ -1,10 +1,10 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.2 (win64) Build 2708876 Wed Nov  6 21:40:23 MST 2019
--- Date        : Fri Dec 10 12:19:12 2021
+-- Date        : Mon Dec 13 10:19:12 2021
 -- Host        : DESKTOP-DAO2O90 running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim
---               d:/code/verilog/FPGA_Project/Ares/Ares.srcs/sources_1/ip/dmem/dmem_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top dmem -prefix
+--               dmem_ dmem_sim_netlist.vhdl
 -- Design      : dmem
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -22,8 +22,6 @@ entity dmem_spram is
     we : in STD_LOGIC;
     a : in STD_LOGIC_VECTOR ( 7 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of dmem_spram : entity is "spram";
 end dmem_spram;
 
 architecture STRUCTURE of dmem_spram is
@@ -1047,8 +1045,6 @@ entity dmem_dist_mem_gen_v8_0_13_synth is
     we : in STD_LOGIC;
     a : in STD_LOGIC_VECTOR ( 7 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of dmem_dist_mem_gen_v8_0_13_synth : entity is "dist_mem_gen_v8_0_13_synth";
 end dmem_dist_mem_gen_v8_0_13_synth;
 
 architecture STRUCTURE of dmem_dist_mem_gen_v8_0_13_synth is
@@ -1150,8 +1146,6 @@ entity dmem_dist_mem_gen_v8_0_13 is
   attribute C_SYNC_ENABLE of dmem_dist_mem_gen_v8_0_13 : entity is 1;
   attribute C_WIDTH : integer;
   attribute C_WIDTH of dmem_dist_mem_gen_v8_0_13 : entity is 32;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of dmem_dist_mem_gen_v8_0_13 : entity is "dist_mem_gen_v8_0_13";
 end dmem_dist_mem_gen_v8_0_13;
 
 architecture STRUCTURE of dmem_dist_mem_gen_v8_0_13 is

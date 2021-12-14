@@ -16,29 +16,9 @@ module writeback(
     input wire [`RegBus]alu_i,
     input wire [`InstAddrBus]pcadd4_i,
     input wire [`WBSEL_BUS]WBSel_i,
-    output reg [`RegBus]wb_o
+    output wire [`RegBus]wb_o
     );
 
-
-    always @(*) 
-    begin
-        case (WBSel_i)
-            `WBSEL_MEM:
-            begin
-                wb_o = mem_i;
-            end
-            `WBSEL_ALU:
-            begin
-                wb_o = alu_i;
-            end
-            `WBSEL_PCADD4: 
-            begin
-                wb_o = pcadd4_i + 32'h4;
-            end
-            default: 
-            begin
-                wb_o = mem_i;
-            end
-        endcase
-    end
+    assign wb_o =   (WBSel_i == `WBSEL_ALU)?alu_i: 
+                    (WBSel_i == `WBSEL_PCADD4)?(pcadd4_i + 32'h4):mem_i;
 endmodule

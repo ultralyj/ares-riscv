@@ -1,10 +1,10 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.2 (win64) Build 2708876 Wed Nov  6 21:40:23 MST 2019
-// Date        : Fri Dec 10 23:36:09 2021
+// Date        : Mon Dec 13 10:19:13 2021
 // Host        : DESKTOP-DAO2O90 running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim
-//               d:/code/verilog/FPGA_Project/Ares/Ares.srcs/sources_1/ip/imem/imem_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top imem -prefix
+//               imem_ imem_sim_netlist.v
 // Design      : imem
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -88,7 +88,7 @@ endmodule
 (* C_MEM_INIT_FILE = "imem.mif" *) (* C_MEM_TYPE = "0" *) (* C_PARSER_TYPE = "1" *) 
 (* C_PIPELINE_STAGES = "0" *) (* C_QCE_JOINED = "0" *) (* C_QUALIFY_WE = "0" *) 
 (* C_READ_MIF = "1" *) (* C_REG_A_D_INPUTS = "0" *) (* C_REG_DPRA_INPUT = "0" *) 
-(* C_SYNC_ENABLE = "1" *) (* C_WIDTH = "32" *) (* ORIG_REF_NAME = "dist_mem_gen_v8_0_13" *) 
+(* C_SYNC_ENABLE = "1" *) (* C_WIDTH = "32" *) 
 module imem_dist_mem_gen_v8_0_13
    (a,
     d,
@@ -244,7 +244,6 @@ module imem_dist_mem_gen_v8_0_13
         .spo({\^spo [26:20],\^spo [18:15],\^spo [12],\^spo [13],\^spo [11:2],\^spo [0]}));
 endmodule
 
-(* ORIG_REF_NAME = "dist_mem_gen_v8_0_13_synth" *) 
 module imem_dist_mem_gen_v8_0_13_synth
    (spo,
     a);
@@ -259,7 +258,6 @@ module imem_dist_mem_gen_v8_0_13_synth
         .spo(spo));
 endmodule
 
-(* ORIG_REF_NAME = "rom" *) 
 module imem_rom
    (spo,
     a);

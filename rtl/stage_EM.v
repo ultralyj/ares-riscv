@@ -13,7 +13,8 @@
 
 module stage_EM(
     input wire clk_i,
-
+    input wire rst_i,
+    /*__________________输入部分________________*/
     /* 控制通路输入 */
     input wire RegWEn_ei,
     input wire MemRW_ei,
@@ -25,7 +26,6 @@ module stage_EM(
     /* pc输入 */
     input wire [`InstAddrBus]pc_ei,
     
-
     /*__________________输出部分________________*/
     /* 控制通路输出 */
     output reg RegWEn_eo,
@@ -41,13 +41,27 @@ module stage_EM(
 
     always @(posedge clk_i) 
     begin
-        RegWEn_eo = RegWEn_ei;
-        MemRW_eo = MemRW_ei;
-        WBSel_eo = WBSel_ei;
-        alu_eo = alu_ei;
-        RegDataB_eo = RegDataB_ei;
-        AddrD_eo = AddrD_ei;
-        pc_eo = pc_ei;
+        if(rst_i == `RESET_ENABLE)
+        begin
+            RegWEn_eo <= `REGWEN_DEFAULT;
+            MemRW_eo <= `MEMRW_DEFAULT;
+            WBSel_eo <= `WBSEL_DEFAULT;
+            alu_eo <= `ZeroWord;
+            RegDataB_eo <= `ZeroWord;
+            AddrD_eo <= `ZeroReg;
+            pc_eo <= `ZeroWord;
+        end
+        else
+        begin
+            RegWEn_eo <= RegWEn_ei;
+            MemRW_eo <= MemRW_ei;
+            WBSel_eo <= WBSel_ei;
+            alu_eo <= alu_ei;
+            RegDataB_eo <= RegDataB_ei;
+            AddrD_eo <= AddrD_ei;
+            pc_eo <= pc_ei;
+        end
+        
     end
 endmodule
 

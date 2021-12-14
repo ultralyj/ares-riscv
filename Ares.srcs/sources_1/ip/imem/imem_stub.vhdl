@@ -1,10 +1,10 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.2 (win64) Build 2708876 Wed Nov  6 21:40:23 MST 2019
--- Date        : Fri Dec 10 23:36:09 2021
+-- Date        : Mon Dec 13 10:19:13 2021
 -- Host        : DESKTOP-DAO2O90 running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode synth_stub
---               d:/code/verilog/FPGA_Project/Ares/Ares.srcs/sources_1/ip/imem/imem_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub -rename_top imem -prefix
+--               imem_ imem_stub.vhdl
 -- Design      : imem
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7z020clg400-2

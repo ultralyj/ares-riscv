@@ -24,6 +24,9 @@ module rvtop(
     output wire dmem_o
     );
 
+    wire clk;
+    wire sys_rst;
+    wire locked;
     /* risc-v内核与存储器交互的总线 */
     wire [`InstAddrBus]pc;
     wire [`InstAddrBus]inst;
@@ -43,9 +46,22 @@ module rvtop(
     assign imemAddr = pc-`PC_START_ADDR;
     assign dmem_o = mem[0];
     
+    assign sys_rst = locked & rst_i;
+
+    hcc hcc_init(
+    .resetn(rst_i),
+    .clk_i(clk_i),
+    // Clock out ports
+    .systick(clk),     // output systick
+    // .pixel_clock(pixel_clock),     // output pixel_clock
+    // .pixel_clockx5(pixel_clockx5),     // output pixel_clockx5
+    // Status and control signals
+    .locked(locked)       // output locked
+    );   
+
     /* 实例化DMEM模块（IP核） */
     dmem dmem_inst (
-        .clk(clk_i),                 // 时钟输入
+        .clk(clk),                 // 时钟输入
         .we(MemRW),                // 写入使能
         .a(dmemAddr[7:0]),           // 8bit地址输入
         .d(DataW),               // 32位数据写入
@@ -62,8 +78,8 @@ module rvtop(
 
     /* 实例化risc-v内核模块 */ 
     rv_core rv_core_inst(
-        .clk_i(clk_i),
-        .rst_i(rst_i),
+        .clk_i(clk),
+        .rst_i(sys_rst),
         .mem_i(mem),
         .pc_o(pc),
         .inst_i(inst),
