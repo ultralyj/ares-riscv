@@ -1,0 +1,6 @@
+verilog xil_defaultlib  \
+"../../../../Ares.srcs/sources_1/ip/gmem/sim/gmem.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+nosort

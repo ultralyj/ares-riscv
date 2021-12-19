@@ -41,10 +41,10 @@ module rv_core(
     /* xxxxxxxxxxxxxxxF取指级连线组xxxxxxxxxxxxxxx */
     /* ◄──────────────Fetch line────────────────► */
     /* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */
-    /* 指令连线 */
-    wire [`InstAddrBus]inst_F;
     /* pc连线 */
     wire [`InstAddrBus]pc_F;
+    /* 指令连线 */
+    wire [`InstAddrBus]inst_F;
 
     /*________________D译码级连线组_________________*/
     /* ◄──────────────Decode line────────────────► */
@@ -69,6 +69,8 @@ module rv_core(
     /* pc连线 */
     wire [`InstAddrBus]pc_D;
     wire pc_stopFlag;
+    /* 立即数连线 */
+    wire [`RegBus]imm_D;
 
     /*________________E执行级连线组_________________*/
     /* ◄──────────────Excute line────────────────► */
@@ -108,16 +110,16 @@ module rv_core(
     /* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */
     /* 控制通路连线 */
     wire RegWEn_M;
-    wire MemRW_M;
     wire [`WBSEL_BUS]WBSel_M;
-    /* 通用寄存器数据输出连线 */
-    wire [`RegBus]RegDataB_M;
+    wire MemRW_M;
+   
     /* pc连线 */
     wire [`InstAddrBus]pc_M;
     /* alu */
     wire [`RegBus]alu_M;
     wire [`RegAddrBus]AddrD_M;
     wire [`RegBus]DataD_M;
+    wire [`RegBus]RegDataB_M;
     /* dmem */
     wire [`MEM_BUS]mem_M;
     
@@ -161,11 +163,11 @@ module rv_core(
         .pipeline_flush_i(pipeline_Flush_E),
         .pipeline_nop_i(pc_stopFlag),
         /*______输入部分________*/
-        .inst_fi(inst_F),
         .pc_fi(pc_F),
+        .inst_fi(inst_F),
         /*______输出部分________*/
-        .inst_fo(inst_D),
-        .pc_fo(pc_D)
+        .pc_fo(pc_D),
+        .inst_fo(inst_D)
     );
 
     /*
@@ -177,7 +179,7 @@ module rv_core(
     /* 实例化ctrl模块，实现控制通路配置 */
     ctrl ctrl_inst(
         /* 控制输入 */
-        .inst_i({inst_D[30],inst_D[14:12],inst_D[6:2]}),
+        .inst_i({inst_D[25],inst_D[30],inst_D[14:12],inst_D[6:2]}),
         /* 控制输出 */
         .PCSel_o(PCSel_D),
         .ImmSel_o(ImmSel_D),
@@ -188,6 +190,13 @@ module rv_core(
         .RegWEn_o(RegWEn_D),
         .WBSel_o(WBSel_D),
         .MemRW_o(MemRW_D)
+    );
+
+    /* 实例化ImmGen模块 */
+    ImmGen ImmGen_inst(
+        .inst_i(inst_D[31:7]),
+        .ImmSel_i(ImmSel_D),
+        .imm_o(imm_D)
     );
 
     /* 实例化regs模块 */
@@ -250,6 +259,7 @@ module rv_core(
         .inst_di(inst_D),   
         /* pc输入 */
         .pc_di(pc_D),
+        .imm_di(imm_D),
         /*__________________输出部分________________*/
         /* 控制通路输出 */
         .PCSel_do(PCSel_E),
@@ -267,7 +277,8 @@ module rv_core(
         /* 立即数生成器输出 */
         .inst_do(inst_E),  
         /* pc输出 */ 
-        .pc_do(pc_E)
+        .pc_do(pc_E),
+        .imm_do(imm_E)
     );
 
     /*
@@ -292,13 +303,6 @@ module rv_core(
         .DataB_i(RegDataB_E),
         .BrEq_o(BrEq_E),
         .BrLt_o(BrLt_E)
-    );
-
-    /* 实例化ImmGen模块 */
-    ImmGen ImmGen_inst(
-        .inst_i(inst_E[31:7]),
-        .ImmSel_i(ImmSel_E),
-        .imm_o(imm_E)
     );
 
     /* 实例化ASel模块 */
@@ -326,30 +330,30 @@ module rv_core(
     );
 
     /* 流水线冲刷控制模块 */
-    assign pipeline_Flush_E = PCSel_E;
+    assign pipeline_Flush_E = PCSel_FE;
 
     /* ____________________流水线寄存器组E->M___________________ */ 
     stage_EM stage_EM_inst(
-        /* 控制通路输入 */
         .clk_i(clk_i),
         .rst_i(rst_i),
+        /* 控制通路输入 */
         .RegWEn_ei(RegWEn_E),
-        .MemRW_ei(MemRW_E),
         .WBSel_ei(WBSel_E),
+        .MemRW_ei(MemRW_E),
         /* alu输入 */
         .alu_ei(alu_E),
-        .RegDataB_ei(RegDataB_E),
         .AddrD_ei(inst_E[11:7]),
+        .RegDataB_ei(RegDataB_E),
         /* pc输入 */
         .pc_ei(pc_E),
         /* 控制通路输出 */
         .RegWEn_eo(RegWEn_M),
-        .MemRW_eo(MemRW_M),
         .WBSel_eo(WBSel_M),
+        .MemRW_eo(MemRW_M),
         /* alu输出 */
         .alu_eo(alu_M),
-        .RegDataB_eo(RegDataB_M),
         .AddrD_eo(AddrD_M),
+        .RegDataB_eo(RegDataB_M),
         /* pc输出 */
         .pc_eo(pc_M)
     );

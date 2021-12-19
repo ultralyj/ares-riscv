@@ -23,14 +23,14 @@ module pc(
 
 initial 
     begin
-        pc_o <= `PC_START_ADDR;        
+        pc_o <= `ZeroWord;        
     end
 
 always @(posedge clk_i or negedge rst_i) 
 begin
     if(rst_i == `RESET_ENABLE)
     begin
-        pc_o <= `PC_START_ADDR;
+        pc_o <= `ZeroWord;
     end
     else 
     begin

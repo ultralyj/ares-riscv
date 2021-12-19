@@ -2,20 +2,22 @@
  * @file core_param.v
  * @author ultralyj (1951578@tongji.edu.cn)
  * @brief risc-v内核参数的宏定义包含文件
- * @version 0.3
+ * @version 0.4
  * @date 2021-12-11
  * 
  * @copyright Copyright (c) 2021
  * 
  */
 
+
 /* 重要配置参数，可修改 */
 `define PC_START_ADDR   32'h0001_0054         
-`define DMEM_SIZE       128
+`define DMEM_SIZE       256
 
 /* BUS length */
 `define RegAddrBus      4:0
 `define RegBus          31:0
+`define DoubleRegBus    63:0
 `define MEM_BUS         31:0
 `define MEMAddrBus      31:0
 `define InstAddrBus     31:0
@@ -23,7 +25,7 @@
 `define IMM_BUS         11:0
 `define ASEL_BUS        1:0
 `define BSEL_BUS        1:0
-`define INST_CTRL_BUS   8:0
+`define INST_CTRL_BUS   9:0
 `define INST_CTRL_BUS2  7:0
 `define IMMSEL_BUS      2:0
 `define ALUSEL_BUS      3:0
@@ -92,6 +94,11 @@
 `define ALUSEL_SRA      4'b0111
 `define ALUSEL_SLT      4'b1001
 `define ALUSEL_SLTU     4'b1010
+`define ALUSEL_MUL      4'b1111
+`define ALUSEL_MULH     4'b1100
+`define ALUSEL_MULHSU   4'b1101
+`define ALUSEL_MULHU    4'b1110
+`define ALUSEL_B        4'b1011
 `define ALUSEL_DEFAULT  4'b0000
 
 /* 9. memory read/write(output) options */
@@ -111,8 +118,9 @@
 `define WBSEL_DEFAULT   2'b00
 
 /* others */
-`define FUNCT7_LOW      1'b0
-`define FUNCT7_HIGH     1'b1
+`define FUNCT7_LOW      2'b00
+`define FUNCT7_HIGH     2'b01
+`define FUNCT7_MUL      2'b10
 `define RESET_ENABLE    1'b0
 `define PC_STOP_ENABLE  1'b1
 `define PC_STOP_DISABLE 1'b0

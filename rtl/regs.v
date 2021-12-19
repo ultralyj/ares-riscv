@@ -52,7 +52,6 @@ module regs(
             begin
 	            regs[i] <= 0;
             end
-            regs[2]  <= `PC_START_ADDR;
         end
         else
         begin

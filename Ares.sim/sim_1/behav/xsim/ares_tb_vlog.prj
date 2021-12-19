@@ -1,0 +1,42 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../Ares.srcs/sources_1/ip/hcc" \
+"../../../../Ares.srcs/sources_1/ip/gmem/sim/gmem.v" \
+"../../../../Ares.srcs/sources_1/ip/memory/sim/memory.v" \
+"../../../../Ares.srcs/sources_1/ip/bootloader/sim/bootloader.v" \
+"../../../../Ares.srcs/sources_1/ip/hcc/hcc_clk_wiz.v" \
+"../../../../Ares.srcs/sources_1/ip/hcc/hcc.v" \
+"../../../../rtl/ASel.v" \
+"../../../../rtl/BSel.v" \
+"../../../../rtl/BranchComp.v" \
+"../../../../rtl/ImmGen.v" \
+"../../../../rtl/alu.v" \
+"../../../../rtl/hdmi/asyn_rst_syn.v" \
+"../../../../rtl/ctrl.v" \
+"../../../../rtl/ctrl_br.v" \
+"../../../../rtl/hdmi/dvi_encoder.v" \
+"../../../../rtl/hdmi/dvi_transmitter_top.v" \
+"../../../../rtl/forwarding.v" \
+"../../../../rtl/hdmi/hdmi_top.v" \
+"../../../../rtl/pc.v" \
+"../../../../rtl/rbus.v" \
+"../../../../rtl/regs.v" \
+"../../../../rtl/rv_core.v" \
+"../../../../rtl/rvtop.v" \
+"../../../../rtl/hdmi/serializer_10_to_1.v" \
+"../../../../rtl/stage_DE.v" \
+"../../../../rtl/stage_EM.v" \
+"../../../../rtl/stage_FD.v" \
+"../../../../rtl/stage_MW.v" \
+"../../../../rtl/uart/uart_baud_generate.v" \
+"../../../../rtl/uart/uart_top.v" \
+"../../../../rtl/uart/uart_tx.v" \
+"../../../../rtl/hdmi/video_display.v" \
+"../../../../rtl/hdmi/video_driver.v" \
+"../../../../rtl/writeback.v" \
+"../../../../tb/ares_tb.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

@@ -30,12 +30,14 @@ int main()
     ofp = fopen("riscv_test.coe", "w+");
     /* 添加coe文件头 */
     fprintf(ofp, "MEMORY_INITIALIZATION_RADIX=16;\nMEMORY_INITIALIZATION_VECTOR=\n");
-
+    for(int i=0;i<21;i++)
+    {
+        fprintf(ofp, "00000000,\n");
+    }
     /* 获得文件长度 */
     fseek(ifp, 0L, SEEK_END);
     int fileLen = ftell(ifp) / 4;
     fseek(ifp, 0L, SEEK_SET);
-
     /* 读取bin文件的内容并写入coe文件 */
     uint32_t *riscvInst = NULL;
     size_t i = 0;

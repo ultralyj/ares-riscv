@@ -33,7 +33,7 @@ assign imm_o =  (ImmSel_i == `IMMSEL_I_TYPE)?
                         inst_i[20],inst_i[30:21],{1'b0}}:
                 (ImmSel_i == `IMMSEL_U_TYPE)?
                     /* U型立即数：20位长立即数 */
-                    {inst_i[31:20],{(12){1'b0}}}:`ZeroWord;
+                    {inst_i[31:12],{(12){1'b0}}}:`ZeroWord;
 // always @(*) 
 // begin
 //    case (ImmSel_i)

@@ -34,7 +34,8 @@ module stage_DE(
     input wire [`InstAddrBus]inst_di,   
     /* pc输入 */
     input wire [`InstAddrBus] pc_di,
-
+    /* 立即数输入 */
+    input wire [`RegBus]imm_di,
     /*__________________输出部分________________*/
     /* 控制通路输出 */
     output reg PCSel_do,
@@ -52,12 +53,16 @@ module stage_DE(
     /* 指令输出 */
     output reg [`InstAddrBus]inst_do,
     /* pc输出 */
-    output reg [`InstAddrBus] pc_do
+    output reg [`InstAddrBus] pc_do,
+    /* 立即数输出 */
+    output reg [`RegBus]imm_do
     );
 
-    always @(posedge clk_i or negedge rst_i) 
+    always @(posedge clk_i) 
     begin
-        if(rst_i == `RESET_ENABLE)
+        if( rst_i == `RESET_ENABLE || 
+            pipeline_flush_i == `PLFLUSH_ENABLE || 
+            pipeline_nop_i == `PC_STOP_ENABLE)
         begin
             PCSel_do <= `PCSEL_DEFAULT;
             BrUn_do <= `BRUN_DEFAULT;
@@ -68,45 +73,28 @@ module stage_DE(
             RegWEn_do <= `REGWEN_DEFAULT;
             MemRW_do <= `MEMRW_DEFAULT;
             WBSel_do <= `WBSEL_DEFAULT;
-            DataA_do <= `ZeroReg;
-            DataB_do <= `ZeroReg;
+            DataA_do <= `ZeroWord;
+            DataB_do <= `ZeroWord;
             inst_do <= `ZeroWord;
             pc_do <= `ZeroWord;
+            imm_do <= `ZeroWord;
         end
         else
         begin
-            if(pipeline_flush_i == `PLFLUSH_ENABLE || pipeline_nop_i == `PC_STOP_ENABLE )
-            begin // 进行流水线冲刷
-                PCSel_do <= `PCSEL_DEFAULT;
-                BrUn_do <= `BRUN_DEFAULT;
-                ASel_do <= `ASEL_DEFAULT;
-                BSel_do <= `BSEL_DEFAULT;
-                ImmSel_do <= `IMMSEL_DEFAULT;
-                ALUSel_do <= `ALUSEL_DEFAULT;
-                RegWEn_do <= `REGWEN_DEFAULT;
-                MemRW_do <= `MEMRW_DEFAULT;
-                WBSel_do <= `WBSEL_DEFAULT;
-                DataA_do <= `ZeroReg;
-                DataB_do <= `ZeroReg;
-                inst_do <= `ZeroWord;
-                pc_do <= `ZeroWord;
-            end
-            else 
-            begin
-                PCSel_do <= PCSel_di;
-                BrUn_do <= BrUn_di;
-                ASel_do <= ASel_di;
-                BSel_do <= BSel_di;
-                ImmSel_do <= ImmSel_di;
-                ALUSel_do <= ALUSel_di;
-                RegWEn_do <= RegWEn_di;
-                MemRW_do <= MemRW_di;
-                WBSel_do <= WBSel_di;
-                DataA_do <= DataA_di;
-                DataB_do <= DataB_di;
-                inst_do <= inst_di;
-                pc_do <= pc_di;
-            end
+            PCSel_do <= PCSel_di;
+            BrUn_do <= BrUn_di;
+            ASel_do <= ASel_di;
+            BSel_do <= BSel_di;
+            ImmSel_do <= ImmSel_di;
+            ALUSel_do <= ALUSel_di;
+            RegWEn_do <= RegWEn_di;
+            MemRW_do <= MemRW_di;
+            WBSel_do <= WBSel_di;
+            DataA_do <= DataA_di;
+            DataB_do <= DataB_di;
+            inst_do <= inst_di;
+            pc_do <= pc_di;
+            imm_do <= imm_di;
         end
         
     end

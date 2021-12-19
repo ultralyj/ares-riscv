@@ -1,0 +1,1 @@
+C:\Users\ultralyj\AppData\Local\Programs\Microsoft VS Code\Code.exe -g [file name]:[line number]

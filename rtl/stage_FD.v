@@ -18,12 +18,11 @@ module stage_FD(
     input wire pipeline_flush_i,
     input wire pipeline_nop_i,
     /*______输入部分________*/
-    input wire [`InstAddrBus]inst_fi,
     input wire [`InstAddrBus]pc_fi,
+    input wire [`InstAddrBus]inst_fi,
     /*______输出部分________*/
-    output reg [`InstAddrBus]inst_fo,
-    output reg [`InstAddrBus]pc_fo
-   
+    output reg [`InstAddrBus]pc_fo,
+    output reg [`InstAddrBus]inst_fo
     );
 
     always @(posedge clk_i or negedge rst_i) 
@@ -39,21 +38,21 @@ module stage_FD(
             if(pipeline_flush_i == `PLFLUSH_ENABLE)
             begin
                 /* 进行流水线冲刷 */
-                inst_fo <= `ZeroWord;
                 pc_fo <= `ZeroWord;
+                inst_fo <= `ZeroWord;
             end
             else 
             begin
                 if(pipeline_nop_i == `PC_STOP_ENABLE)
                 begin
                     /* 流水线保持，再生成一条原指令 */
-                    inst_fo <= inst_fo;
                     pc_fo <= pc_fo;
+                    inst_fo <= inst_fo;
                 end
                 else
                 begin
-                    inst_fo <= inst_fi;
                     pc_fo <= pc_fi;
+                    inst_fo <= inst_fi;
                 end
             end
         end

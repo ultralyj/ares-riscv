@@ -1,7 +1,5 @@
 `timescale 1ns / 1ps
 
-`include "core_param.v"
-
 module ares_tb();
 
 reg clk;

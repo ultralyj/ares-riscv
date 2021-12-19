@@ -30,7 +30,7 @@ module ctrl(
     /* 运算指令由下面三部分确定 */
     wire[4:0]   opcode = inst_i[4:0];
     wire[2:0]   funct3 = inst_i[7:5];
-    wire        funct7 = inst_i[8];
+    wire[1:0]   funct7 = inst_i[9:8];
     
     assign PCSel_o =    (opcode == `INST_JAL||opcode == `INST_JALR)?`PCSEL_ALU:`PCSEL_ADD4;
     assign ImmSel_o =   (opcode == `INST_TYPE_I || opcode == `INST_TYPE_L || opcode == `INST_JALR)?`IMMSEL_I_TYPE:
@@ -41,7 +41,7 @@ module ctrl(
     assign BrUn_o =     (opcode != `INST_TYPE_B)?`BRUN_DEFAULT:
                         (funct3 == `INST_BLTU || funct3 == `INST_BGEU)?`BRUN_UNSIGNED:`BRUN_SIGNED;
     assign ASel_o =     (opcode == `INST_TYPE_B||opcode == `INST_JAL||
-                         opcode == `INST_LUI||opcode == `INST_AUIPC)?`ASEL_PC:`ASEL_REG;
+                         opcode == `INST_AUIPC)?`ASEL_PC:`ASEL_REG;
     assign BSel_o =     (opcode == `INST_TYPE_R_M)?`BSEL_REG:`BSEL_IMM;
     assign MemRW_o =    (opcode == `INST_TYPE_S)?`MEMRW_STORE:`MEMRW_LOAD;
     assign RegWEn_o =   (opcode == `INST_TYPE_S||opcode == `INST_TYPE_B)?`REGWEN_DISABLE:`REGWEN_ENABLE;
@@ -51,12 +51,18 @@ module ctrl(
                         (opcode == `INST_TYPE_R_M && funct3 == `INST_ADD_SUB && funct7 == `FUNCT7_LOW ||
                             opcode == `INST_TYPE_I && funct3 == `INST_ADD_SUB)?`ALUSEL_ADD:
                         (opcode == `INST_TYPE_R_M && funct3 == `INST_ADD_SUB && funct7 == `FUNCT7_HIGH)?`ALUSEL_SUB:
-                        (funct3 == `INST_SLL)?`ALUSEL_SLL:
-                        (funct3 == `INST_SLT)?`ALUSEL_SLT:
-                        (funct3 == `INST_SLTU)?`ALUSEL_SLTU:
-                        (funct3 == `INST_XOR)?`ALUSEL_XOR:
+                        (funct3 == `INST_SLL && funct7 != `FUNCT7_MUL)?`ALUSEL_SLL:
+                        (funct3 == `INST_SLT && funct7 != `FUNCT7_MUL)?`ALUSEL_SLT:
+                        (funct3 == `INST_SLTU && funct7 != `FUNCT7_MUL)?`ALUSEL_SLTU:
+                        (funct3 == `INST_XOR && funct7 != `FUNCT7_MUL)?`ALUSEL_XOR:
                         (funct3 == `INST_SR && funct7 == `FUNCT7_LOW)?`ALUSEL_SRL:
                         (funct3 == `INST_SR && funct7 == `FUNCT7_HIGH)?`ALUSEL_SRA:
-                        (funct3 == `INST_OR)?`ALUSEL_OR:
-                        (funct3 == `INST_AND)?`ALUSEL_AND:`ALUSEL_DEFAULT):`ALUSEL_ADD;
+                        (funct3 == `INST_OR  && funct7 != `FUNCT7_MUL)?`ALUSEL_OR:
+                        (funct3 == `INST_AND && funct7 != `FUNCT7_MUL)?`ALUSEL_AND:
+                        (funct3 == `INST_MUL && funct7 == `FUNCT7_MUL)?`ALUSEL_MUL:
+                        (funct3 == `INST_MULH && funct7 == `FUNCT7_MUL)?`ALUSEL_MULH:
+                        (funct3 == `INST_MULHSU && funct7 == `FUNCT7_MUL)?`ALUSEL_MULHSU:
+                        (funct3 == `INST_MULHU && funct7 == `FUNCT7_MUL)?`ALUSEL_MULHU:`ALUSEL_DEFAULT):
+                        (opcode == `INST_LUI)?`ALUSEL_B:`ALUSEL_ADD;
+
 endmodule
