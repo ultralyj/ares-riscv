@@ -1,6 +1,6 @@
 /**
  * @file video_display.v
- * @author amy 
+ * @author amy, Candyaner   
  * @brief 从显存读取屏幕颜色信息
  * @version 0.1
  * @date 2021-12-17

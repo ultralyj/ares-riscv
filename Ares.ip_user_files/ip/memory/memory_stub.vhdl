@@ -1,7 +1,7 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.2 (win64) Build 2708876 Wed Nov  6 21:40:23 MST 2019
--- Date        : Sun Dec 19 16:38:36 2021
+-- Date        : Wed Dec 22 23:45:46 2021
 -- Host        : DESKTOP-DAO2O90 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub
 --               D:/code/verilog/FPGA_Project/Ares/Ares.srcs/sources_1/ip/memory/memory_stub.vhdl

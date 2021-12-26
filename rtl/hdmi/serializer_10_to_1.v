@@ -1,6 +1,6 @@
 /**
  * @file serializer_10_to_1.v
- * @author amy 
+ * @author amy, Candyaner   
  * @brief 实现10位并行信号向串行信号转化
  * @version 0.1
  * @date 2021-12-17

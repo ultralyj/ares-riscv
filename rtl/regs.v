@@ -44,21 +44,11 @@ module regs(
                         DataD_i:regs[AddrB_i]):`ZeroWord;
                         
     /* 写寄存器（优先） */
-    always @(posedge clk_i or negedge rst_i) 
+    always @(posedge clk_i) 
     begin
-        if(rst_i == `RESET_ENABLE)
+        if ((RegWEn_i == `REGWEN_ENABLE) && (AddrD_i != `ZeroReg)) 
         begin
-            for(integer i = 1; i <32; i = i + 1) 
-            begin
-	            regs[i] <= 0;
-            end
-        end
-        else
-        begin
-            if ((RegWEn_i == `REGWEN_ENABLE) && (AddrD_i != `ZeroReg)) 
-            begin
-                regs[AddrD_i] <= DataD_i;
-            end 
-        end     
-    end
+            regs[AddrD_i] <= DataD_i;
+        end 
+    end     
 endmodule

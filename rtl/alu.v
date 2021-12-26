@@ -1,6 +1,6 @@
 /**
  * @file alu.v
- * @author ultralyj (1951578@tongji.edu.cn)
+ * @author ultralyj (1951578@tongji.edu.cn), SunShine.
  * @brief 实现一些基本运算，operate DataA and DataB based on method ALUSel gives
  *          excute cmd below:
  *              1.ADD 2.SUB 3.AND 4.OR 5.XOR

@@ -1,6 +1,6 @@
 /**
  * @file forwarding.v
- * @author ultralyj (1951578@tongji.edu.cn)
+ * @author ARES Team.
  * @brief 实现前馈控制
  *          前馈控制置于cpu的译码级，接受来自E级的AddrD,RegWEn,DataD的输入
  *          当冲突发生时，用前级的数据替换D级的DataA,DataB以实现在不损失性能

@@ -1,6 +1,6 @@
 /**
  * @file hdmi_top.v
- * @author amy 
+ * @author amy, Candyaner   
  * @brief hdmi模组顶层文件
  * @version 0.1
  * @date 2021-12-17

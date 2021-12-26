@@ -1,6 +1,13 @@
-//function:uart communication
-//author:fengshuai
-//2015Äê11ÔÂ8ÈÕ17:07:34
+/**
+ * @file uart_top.v
+ * @author zz16
+ * @brief uart?????????   
+ * @version 0.1
+ * @date 2021-11-22
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
 
 
 module uart_top(

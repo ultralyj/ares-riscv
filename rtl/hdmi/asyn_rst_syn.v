@@ -1,6 +1,6 @@
 /**
  * @file asyn_rst_syn.v
- * @author amy 
+ * @author amy, Candyaner  
  * @brief 实现异步低有效复位到同步高有效复位
  * @version 0.1
  * @date 2021-12-17

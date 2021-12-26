@@ -1,10 +1,18 @@
-//Function：uart baud rate generate
-//Author:fengshuai
-//Time:2015-11-8 13:47:00
-//sys_clk=125MHz the cycle = 10^9 / 125*10^6 = 10^3/125 = 8ns
-//if baud=115200,16倍波特率周期/2=271   271/8=34
-//if baud=19200,16倍波特率周期/2=1628   1628/8=204
-//if baud=9600,16倍波特率周期/2=3255    4069/8=509
+/**
+ * @file uart_baud_generate.v
+ * @author zz16
+ * @brief 波特率发生器
+ *       sys_clk=150MHz the cycle = 10^9 / 150*10^6 = 10^3/125 = 8ns
+ *      if baud=115200,16倍波特率周期/2=271   271/8=34
+ *      if baud=19200,16倍波特率周期/2=1628   1628/8=204
+ *      if baud=9600,16倍波特率周期/2=3255    4069/8=509          
+ * @version 0.1
+ * @date 2021-11-22
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
+
 
 module uart_baud_generate(
         input   wire            sys_clk_i,

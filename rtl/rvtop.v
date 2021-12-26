@@ -1,6 +1,6 @@
 /**
  * @file rvtop.v
- * @author ares team(ultralyj, Amy, zz16, sunshine, qxy)
+ * @author ares team(ultralyj, Amy, zz16, sunshine, Candyaner)
  * @brief risv-v处理器最高顶层文件，包含内核和dram和irom
  * @version 0.4
  * @date 2021-12-19
@@ -48,7 +48,7 @@ module rvtop(
             即实际地址只需要位移1位即可，而PC输出的是4的倍数，所以需要除以4，
             也就是舍弃pc的低2位（因为定义的rom只有256x32bit因此地址只需要取8位即可） */
     /* bootloader信号线 */
-    wire [3:0]blAddr;
+    wire [5:0]blAddr;
     wire [`MEM_BUS]blDout;
     /* imem信号线 */
     wire [`InstAddrBus]imemAddr;
@@ -71,7 +71,7 @@ module rvtop(
 
     /* 对dmem地址重映射到0-256地址中 */
     assign imemAddr = pc-32'h00010000;
-    assign blAddr = pc[5:2];
+    assign blAddr = pc[7:2];
     assign inst = (pc>32'h00010000)?imemDout:blDout;
     assign sys_rst = locked & rst_i;
 

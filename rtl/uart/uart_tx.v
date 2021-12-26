@@ -1,9 +1,16 @@
-//the part of uart  tx-end 
-//time:2015-11-9 12:04:00
-//author:fenshuai
+/**
+ * @file uart_tx.v
+ * @author zz16
+ * @brief uart???
+ * @version 0.1
+ * @date 2021-11-22
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
 
 module uart_tx(
-        input   wire            clk,        //16±¶µÄ²¨ÌØÂÊ
+        input   wire            clk,        
         input   wire            rst_n,
         input   wire            tx_start,
         input   wire    [7:0]   data_in,

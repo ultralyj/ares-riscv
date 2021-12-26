@@ -1,6 +1,6 @@
 /**
  * @file ImmGen.v
- * @author ultralyj (1951578@tongji.edu.cn)
+ * @author ARES Team.
  * @brief 根据指令类型的不同，选择输出是立即数还是reg数据
  * @version 0.1
  * @date 2021-11-22

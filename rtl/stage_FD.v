@@ -1,6 +1,6 @@
 /**
  * @file stage_FD.v
- * @author ultralyj (1951578@tongji.edu.cn)
+ * @author ares team(ultralyj, Amy, zz16, sunshine, Candyaner)
  * @brief 取值和译码之间的流水线延迟寄存器(通过寄存器达到延迟效果)
  * @version 0.2
  * @date 2021-12-10

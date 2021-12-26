@@ -1,6 +1,6 @@
 /**
  * @file dvi_encode.v
- * @author amy 
+ * @author amy, Candyaner  
  * @brief ²úÉúdviĞÅºÅ
  * @version 0.1
  * @date 2021-12-17

@@ -1,6 +1,6 @@
 /**
  * @file rv_core.v
- * @author ultralyj (1951578@tongji.edu.cn)
+ * @author ares team(ultralyj, Amy, zz16, sunshine, Candyaner)
  * @brief risv-v内核的顶层连接文件（不包括imem,dmem）
  * 包含fetch, decode, excute, memory, writeback五级流水线和其中的模块
  * @version 0.2
@@ -399,4 +399,33 @@ module rv_core(
             └─────┴─────┴─────┴────┴───────────┘
     */
     /* 直接写回到regs里了，不需要其他模块 */
+
+// wire [`InstAddrBus]JalNPC_E;
+// wire [`InstAddrBus]BrNPC; 
+// wire Branch_E;
+// //for BTB
+// wire BrPd_F; 
+// wire BrPd_D;
+// wire BrPd_E;
+// wire [`InstAddrBus] BrPd_PC_F;
+// //count
+// reg [31:0] all_instr_count;
+// reg [31:0] branch_instr_count;
+// reg [31:0] right_predict_count;
+// reg [31:0] error_predict_count;
+// //wire values assignments
+// assign JalNPC_E = imm_E + pc_E;
+
+// assign Branch_E = BrEq_E | BrLt_E;
+
+// BTB BTB_inst(
+//     .clk_i(clk_i),
+//     .rst_i(rst_i),
+//     .rd_PC(pc_F),     
+//     .rd_predicted_PC(BrPd_PC_F), 
+//     .rd_predicted(BrPd_F), 
+//     .btb_en(PCSel_E), 
+//     .wr_PC(pc_E),     
+//     .wr_predicted_PC(alu_E) 
+// );
 endmodule

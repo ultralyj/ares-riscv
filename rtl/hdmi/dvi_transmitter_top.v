@@ -1,6 +1,6 @@
 /**
  * @file dvi_transmit_top.v
- * @author amy 
+ * @author amy, Candyaner   
  * @brief 将输入的颜色信号转为hdmi信号
  * @version 0.1
  * @date 2021-12-17

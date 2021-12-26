@@ -1,6 +1,6 @@
 /**
  * @file core_param.v
- * @author ultralyj (1951578@tongji.edu.cn)
+ * @author ARES Team.
  * @brief risc-v内核参数的宏定义包含文件
  * @version 0.4
  * @date 2021-12-11

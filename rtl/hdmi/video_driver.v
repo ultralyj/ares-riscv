@@ -1,6 +1,6 @@
 /**
  * @file video_driver.v
- * @author amy 
+ * @author amy, Candyaner 
  * @brief 产生行同步与场同步信号，驱动产生hdmi信号
  * @version 0.1
  * @date 2021-12-17

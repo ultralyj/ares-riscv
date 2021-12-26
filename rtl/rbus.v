@@ -1,3 +1,13 @@
+/**
+ * @file rbus.v
+ * @author Amy
+ * @brief 自主设计的精简总线（1M3S）
+ * @version 0.2
+ * @date 2021-12-11
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
 
 `include "core_param.v"
 

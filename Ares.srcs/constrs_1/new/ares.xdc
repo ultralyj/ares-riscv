@@ -16,3 +16,5 @@ set_property PACKAGE_PIN N20 [get_ports {tmds_data_p[2]}]
 set_property IOSTANDARD LVCMOS33 [get_ports uart_txd]
 set_property PACKAGE_PIN M20 [get_ports uart_txd]
 set_property SLEW SLOW [get_ports uart_txd]
+
+set_operating_conditions -grade extended
